@@ -25,6 +25,6 @@ Auth::routes();
 
 // Route::get('/admin/home', [HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['role:admin']], function () {
+Route::group(['middleware' => ['role:admin|sekolah|guru']], function () {
     Route::get('/admin/home', [AdminController::class, 'index'])->name('b.manage.admin.index');
 });

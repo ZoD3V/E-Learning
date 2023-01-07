@@ -11,8 +11,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
+    <style> @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap'); </style>
     <!-- Scripts -->
     @vite(['resources/js/app.js'])
     @vite('resources/css/app.css')

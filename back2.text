@@ -5,16 +5,23 @@
 @endsection
 
 @section('javascript')
-
+  <script>
+        function Openbar() {
+      document.querySelector('.sidebar').classList.toggle('left-[-300px]')
+    }
+  </script>
   <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
 
 
 @endsection
 
 @section('content')
-<div class="max-w-full max-h-screen flex flex-row">
+<div class="w-full max-h-screen">
     {{-- sidebar --}}
-    <div class="w-[250px] bg-white flex flex-col space-y-12 items-center h-screen border-r overflow-y-auto transition-all duration-300">
+  <span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" onclick="Openbar()">
+    <i class="bi bi-filter-left px-2 bg-gray-900 rounded-md"></i>
+  </span>
+  <div class="sidebar fixed top-0 bottom-0 w-[250px] flex flex-col space-y-12 items-center shadow-sm h-screen left-[-300px] lg:left-0 border-r overflow-y-auto transition-all duration-300">
         <div class="p-3"><img src="{{asset('assets/images/Logo.png')}}" class="h-9" alt="Logo" /></div>
         <div class="flex flex-col justify-start items-start w-full space-y-4">
             <div class="flex flex-row items-start justify-start px-6 py-2 hover:bg-blue-200 w-full cursor-pointer">
@@ -61,30 +68,6 @@
                     <ion-icon name="clipboard"></ion-icon>
                 </div>
             <span class="ml-3 font-light text-[15px]">Manajemen Kelas</span>
-            </div>
-        </div>
-
-    </div>
-    <div class="flex-1">
-        <div class="w-full max-w-full">
-                    <div class="h-[60px] border-b w-full flex items-center justify-end">
-            <div class="rounded-md px-5 text-black items-center flex">
-                <ion-icon name="create"></ion-icon>
-                <span class="p-2">Edit Profile</span>
-            </div>
-            <div class="bg-red-500 rounded-md px-5 text-white items-center flex cursor-pointer mr-2">
-                <ion-icon name="log-out"></ion-icon>
-                <span class="p-2">
-                    <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                    </a>
-                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </span>
-            </div>
             </div>
         </div>
     </div>
