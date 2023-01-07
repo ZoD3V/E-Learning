@@ -13,8 +13,8 @@
     </a>
     </div>
     <div>
-        <button type="button" class="text-black border-2 border-blue-700 hover:bg-blue-800 focus:ring-4 hover:text-white focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Masuk</button>
-        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center ml-2 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Daftar</button>
+        <button type="button" class="text-black border-2 border-blue-700 hover:bg-blue-800 focus:ring-4 hover:text-white focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><a href="{{ route('login') }}">{{ __('Masuk') }}</a></button>
+        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center ml-2 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><a  href="{{ route('register') }}">{{ __('Daftar') }}</a></button>
 
     </div>
   </div>
@@ -36,20 +36,36 @@
             <h2 class="text-blue-500 font-bold text-2xl mb-6 text-center">
               Login
             </h2>
-            <input
+            <div class="mb-6">
+                <input
               type="email"
               id="email"
               name="email"
-              class="bg-gray-50 border border-gray-300 mb-6 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="email"
             />
+                @error('email')
+                    <span class="text-red-500 text-sm" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
+            </div>
+
+            <div class="mb-6">
             <input
               type="password"
               id="password"
               name="password"
-              class="bg-gray-50 border border-gray-300 mb-6 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              class="bg-gray-50 border border-gray-300  text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="password"
             />
+
+            @error('password')
+                    <span class="text-red-500 text-sm" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
+            </div>
 
 
             <div class="flex justify-between">
