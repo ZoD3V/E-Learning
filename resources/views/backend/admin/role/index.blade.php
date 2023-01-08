@@ -15,7 +15,6 @@
     dropDown()
   </script>
 
-
 @endsection
 
 @section('content')
@@ -45,7 +44,7 @@
             </div>
 
             <div class="text-left text-sm w-4/5 mx-auto" id="submenu">
-                <h1 class="cursor-pointer p-2 hover:bg-blue-200 rounded-md "><a href="{{route('b.manage.role.index')}}">Manajemen Role</a></h1>
+                <h1 class="cursor-pointer p-2 hover:bg-blue-200 rounded-md ">Manajemen Role</h1>
                 <h1 class="cursor-pointer p-2 hover:bg-blue-200 rounded-md ">Manajemen Permission</h1>
                 <h1 class="cursor-pointer p-2 hover:bg-blue-200 rounded-md ">Manajemen Users</h1>
             </div>
@@ -112,8 +111,30 @@
             </div>
             </div>
         </div>
-
-
+        {{-- content --}}
+        <div class="w-2/3 mx-auto">
+  <div class="bg-white shadow-md rounded my-6">
+    <table class="text-left w-full border-collapse">
+      <thead>
+        <tr>
+          <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Role</th>
+          <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach ($role as $data)
+        <tr class="hover:bg-grey-lighter">
+          <td class="py-4 px-6 border-b border-grey-light">{{$data->name}}</td>
+          <td class="py-4 px-6 border-b border-grey-light">
+            <a href="#" class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-green-500 text-white hover:bg-green-dark">Edit</a>
+            <a href="#" class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-blue-500 text-white hover:bg-blue-dark">View</a>
+          </td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+  </div>
+</div>
     </div>
     {{-- navbar --}}
 </div>
