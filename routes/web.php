@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\backend\AdminController;
+use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\frontend\HomeController as Home;
@@ -27,4 +28,5 @@ Auth::routes();
 
 Route::group(['middleware' => ['role:admin|sekolah|guru']], function () {
     Route::get('/admin/home', [AdminController::class, 'index'])->name('b.manage.admin.index');
+    Route::get('/admin/role', [RoleController::class, 'index'])->name('b.manage.role.index');
 });
