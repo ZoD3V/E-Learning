@@ -38,10 +38,17 @@
             </h2>
             <input
               type="text"
-              id="nama"
+              id="name"
               name="name"
               class="bg-gray-50 border border-gray-300 mb-6 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="nama"
+            />
+              <input
+              type="text"
+              id="sekolah"
+              name="sekolah"
+              class="bg-gray-50 border border-gray-300 mb-6 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              placeholder="nama sekolah"
             />
             <input
               type="email"
@@ -50,13 +57,7 @@
               class="bg-gray-50 border border-gray-300 mb-6 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               placeholder="email"
             />
-            <input
-              type="text"
-              id="sekolah"
-              name="sekolah"
-              class="bg-gray-50 border border-gray-300 mb-6 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              placeholder="sekolah"
-            />
+
             <input
               type="password"
               id="password"
@@ -65,22 +66,20 @@
               placeholder="password"
             />
 
+            <input
+              type="password"
+              id="password-confirm"
+              name="password_confirmation"
+              class="bg-gray-50 border border-gray-300 mb-6 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              placeholder="confirm password"
+            />
 
-            <div class="flex justify-between">
-                <div class="flex items-center">
-                    <input  type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label name="remember" id="remember" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ __('Remember Me') }}</label>
-                </div>
-                <p class=" my-2 text-sm cursor-pointer ">
-                    Forgot Password
-                </p>
-            </div>
 
             <button
               type="submit"
               class="text-white w-full mb-[15px] mt-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
             >
-            {{ __('Login') }}
+            {{ __('Register') }}
             </button>
             <div class="flex justify-center items-center text-sm">
                 <p class="mb-2 mt-2">

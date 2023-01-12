@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Sekolah;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,17 +16,26 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create([
-            'name' => 'Administrator',
-            'email' => 'admin@email.com',
-            'password' => bcrypt('admin')
+        $userSekolah = Sekolah::create([
+            'name' => 'Kodein',
+            'email' => 'kodein@email.com',
+            'npsn' => '201235386328',
+            'kepala_sekolah' => 'Abu Faiz',
+            'password' => bcrypt('kodein')
         ]);
-        $user1 = User::create([
-            'name' => 'Sekolah',
-            'email' => 'sekolah@email.com',
-            'password' => bcrypt('sekolah')
-        ]);
-        $user->assignRole('admin');
-        $user1->assignRole('sekolah');
+        // $user = User::create([
+        //     'name' => 'Administrator',
+        //     'email' => 'admin@email.com',
+        //     'password' => bcrypt('admin')
+        // ]);
+        // $user2 = User::create([
+        //     'name' => 'siswa',
+        //     'sekolah_id' => 1,
+        //     'email' => 'siswa@email.com',
+        //     'password' => bcrypt('siswa')
+        // ]);
+        // $user->assignRole('admin');
+        $userSekolah->assignRole('sekolah');
+        // $user2->assignRole('siswa');
     }
 }

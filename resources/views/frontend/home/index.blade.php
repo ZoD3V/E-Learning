@@ -39,13 +39,13 @@
       </ul>
     </div>
     </div>
-    
+
     <div onclick="">
         <button type="button" class="text-black border-2 border-blue-700 hover:bg-blue-800 focus:ring-4 hover:text-white focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><a href="{{ route('login') }}">{{ __('Masuk') }}</a></button>
         <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center ml-2 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><a  href="{{ route('register') }}">{{ __('Daftar') }}</a></button>
 
     </div>
-    
+
   </div>
 </nav>
 <div class="max-h-screen max-w-full">
@@ -57,7 +57,7 @@
           <div class="font-bold text-blue-500 text-3xl text-center md:mx-20">
           Jadi “si paling rajin” dengan Klassin
           </div>
-          
+
         </div>
         <div class="hidden md:block">
           <img class="object-contain w-[500px]" src={{asset('assets/images/education.png')}} alt="..." />
@@ -68,8 +68,8 @@
         pelajaran
       </p>
       <div class="flex flex-col justify-center md:flex md:flex-row w-full md:mx-auto ">
-       
-        <div class="bg-slate-400 py-[1.5px] px-10 text-white mx-10 md:mx-0 rounded-md font-bold text-sm text-center cursor-pointer shadow-lg px-20">
+
+        <div class="bg-slate-400 py-[1.5px] text-white mx-10 md:mx-0 rounded-md font-bold text-sm text-center cursor-pointer shadow-lg px-20">
           <p class=" text-center">Sekolah</p>
           <p class="text-center ">Daftar</p>
         </div>
