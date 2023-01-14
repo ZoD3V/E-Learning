@@ -53,7 +53,7 @@
 
                 <div class="text-left text-sm w-4/5 mx-auto" x-show="openDrop" @click.outside="openDrop = false">
                     <h1 class="cursor-pointer p-2 hover:bg-blue-200 rounded-md "><a href="{{route('b.manage.role.index')}}">Manajemen Role</a></h1>
-                    <h1 class="cursor-pointer p-2 hover:bg-blue-200 rounded-md ">Manajemen Permission</h1>
+                    <h1 class="cursor-pointer p-2 hover:bg-blue-200 rounded-md "><a href="{{route('b.manage.permission.index')}}">Manajemen Permission</a></h1>
                     <h1 class="cursor-pointer p-2 hover:bg-blue-200 rounded-md ">Manajemen Users</h1>
                 </div>
             </div>

@@ -238,14 +238,14 @@
                         </tr>
 					</thead>
 					<tbody>
-                        @foreach ($role as $data)
+                        @foreach ($permissions as $data)
                         <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
                             <td class="px-2 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{$loop->iteration}}</td>
                             <td class="text-md text-gray-900 font-light px-2 py-4 whitespace-nowrap">
                                 {{$data->name}}
                             </td>
                             <td class="text-md text-gray-900 font-light px-5 py-4 whitespace-nowrap">
-                                <a href="{{route('b.manage.role.edit',$data->id)}}"><ion-icon name="create-outline"></ion-icon></a>
+                                <a href=""><ion-icon name="create-outline"></ion-icon></a>
                                 <a href=""><ion-icon name="trash-outline"></ion-icon></a>
                             </td>
                         </tr>
