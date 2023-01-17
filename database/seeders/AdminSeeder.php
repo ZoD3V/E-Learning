@@ -16,26 +16,18 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        $userSekolah = Sekolah::create([
-            'name' => 'Kodein',
-            'email' => 'kodein@email.com',
-            'npsn' => '201235386328',
-            'kepala_sekolah' => 'Abu Faiz',
-            'password' => bcrypt('kodein')
+        $user = User::create([
+            'name' => 'Administrator',
+            'email' => 'admin@email.com',
+            'password' => bcrypt('admin')
         ]);
-        // $user = User::create([
-        //     'name' => 'Administrator',
-        //     'email' => 'admin@email.com',
-        //     'password' => bcrypt('admin')
-        // ]);
         // $user2 = User::create([
         //     'name' => 'siswa',
         //     'sekolah_id' => 1,
         //     'email' => 'siswa@email.com',
         //     'password' => bcrypt('siswa')
         // ]);
-        // $user->assignRole('admin');
-        $userSekolah->assignRole('sekolah');
+        $user->assignRole('admin');
         // $user2->assignRole('siswa');
     }
 }

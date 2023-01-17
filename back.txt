@@ -1,147 +1,297 @@
-<div>
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{asset('assets/images/Logo.png')}}" alt="" srcset="">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+@extends('layouts.app')
+
+@section('css')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+<link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
+<style>
+/*Overrides for Tailwind CSS */
+
+		/*Form fields*/
+		.dataTables_wrapper select,
+		.dataTables_wrapper .dataTables_filter input {
+			color: #4a5568; 			/*text-gray-700*/
+			padding-left: 1rem; 		/*pl-4*/
+			padding-right: 1rem; 		/*pl-4*/
+			padding-top: .5rem; 		/*pl-2*/
+			padding-bottom: .5rem; 		/*pl-2*/
+			line-height: 1.25; 			/*leading-tight*/
+			border-width: 2px; 			/*border-2*/
+			border-radius: .25rem;
+			border-color: #edf2f7; 		/*border-gray-200*/
+			background-color: #edf2f7; 	/*bg-gray-200*/
+		}
+
+		/*Row Hover*/
+		table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
+			background-color: #ebf4ff;	/*bg-indigo-100*/
+		}
+
+		/*Pagination Buttons*/
+		.dataTables_wrapper .dataTables_paginate .paginate_button		{
+			font-weight: 700;				/*font-bold*/
+			border-radius: .25rem;			/*rounded*/
+			border: 1px solid transparent;
+            padding: 5px;	/*border border-transparent*/
+		}
+
+		/*Pagination Buttons - Current selected */
+		.dataTables_wrapper .dataTables_paginate .paginate_button.current	{
+			color: #fff !important;				/*text-white*/
+			box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06); 	/*shadow*/
+			font-weight: 700;					/*font-bold*/
+			border-radius: .25rem;				/*rounded*/
+			background: #667eea !important;		/*bg-indigo-500*/
+			border: 1px solid transparent;		/*border border-transparent*/
+		}
+
+		/*Pagination Buttons - Hover */
+		.dataTables_wrapper .dataTables_paginate .paginate_button:hover		{
+			color: #fff !important;				/*text-white*/
+			box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);	 /*shadow*/
+			font-weight: 700;					/*font-bold*/
+			border-radius: .25rem;				/*rounded*/
+			background: #667eea !important;		/*bg-indigo-500*/
+			border: 1px solid transparent;		/*border border-transparent*/
+		}
+
+		/*Add padding to bottom border */
+		table.dataTable.no-footer {
+			border-bottom: 1px solid #e2e8f0;	/*border-b-1 border-gray-300*/
+			margin-top: 0.75em;
+			margin-bottom: 0.75em;
+		}
+
+		/*Change colour of responsive icon*/
+		table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
+			background-color: #667eea !important; /*bg-indigo-500*/
+		}
+
+</style>
+@endsection
+
+@section('javascript')
+
+    <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<!--Datatables -->
+	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#users').DataTable({
+                responsive: true
+            }).columns.adjust()
+            .responsive.recalc();
+        })
+    </script>
+    </script>
+
+
+@endsection
+
+@section('content')
+<div class="w-full min-h-screen flex flex-col">
+     {{-- sidebar --}}
+    <div class="h-full lg:flex" x-data="{open: false}">
+        <nav
+            class="fixed  inset-0 transform lg:transform-none lg:opacity-100 duration-200 lg:relative z-10 w-[250px] bg-white border-r text-white"
+            :class="{'translate-x-0 ease-in opacity-100':open === true, '-translate-x-full ease-out opacity-0': open === false}"
+        >
+            <div class="flex justify-center items-center">
+                <div class="p-3"><img src="{{asset('assets/images/Logo.png')}}" class="h-9" alt="Logo" /></div>
+                <button
+                    class="p-2 focus:outline-none lg:hidden flex items-center justify-center"
+                    @click="open = false"
+                >
+                    <div class="text-black text-xl font-bold mt-3"><ion-icon name="chevron-back-outline"></ion-icon></div>
                 </button>
+            </div>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+            <div class="flex flex-col justify-start items-start w-full space-y-4 text-black mt-10 ">
+            <div class="flex flex-row items-start justify-start px-6 py-2 hover:bg-blue-200 w-full cursor-pointer">
+                <div class="text-blue-600 text-xl">
+                    <ion-icon name="grid"></ion-icon>
+                </div>
+            <span class="ml-3 font-light">Dashboard</span>
+            </div>
 
-                    </ul>
+            <span class="text-center px-6 py-2">Menu</span>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
+            <div x-data='{openDrop:false}' class="w-full">
+                <div class="flex flex-row items-center justify-between px-6 py-1.5 hover:bg-blue-200 w-full cursor-pointer">
+                <div class="flex">
+                    <div class="text-blue-600 text-xl">
+                        <ion-icon name="people-circle-outline"></ion-icon>
+                    </div>
+                        <span class="ml-3 font-light text-[15px]">Manajemen Admin</span>
+                    </div>
+                    <div x-on:click="openDrop = !openDrop"><ion-icon name="chevron-down-outline"></ion-icon></div>
+                </div>
 
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item px-10">
-                                    <a class="nav-link btn btn-primary text-white " href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link btn btn-secondary text-white mx-10" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-
-                            @role('admin')
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link" href="{{route('b.manage.admin.index')}}" role="button">
-                                    Admin
-                                    </a>
-                                </li>
-                            @endrole
-
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                <div class="text-left text-sm w-4/5 mx-auto" x-show="openDrop" @click.outside="openDrop = false">
+                    <h1 class="cursor-pointer p-2 hover:bg-blue-200 rounded-md "><a href="{{route('b.manage.role.index')}}">Manajemen Role</a></h1>
+                    <h1 class="cursor-pointer p-2 hover:bg-blue-200 rounded-md "><a href="{{route('b.manage.permission.index')}}">Manajemen Permission</a></h1>
+                    <h1 class="cursor-pointer p-2 hover:bg-blue-200 rounded-md "><a href="{{route('b.manage.user.index')}}">Manajemen Users</a></h1>
                 </div>
             </div>
+
+            <div class="flex flex-row items-start justify-start px-6 py-1.5 hover:bg-blue-200 w-full cursor-pointer">
+                <div class="text-blue-600 text-xl">
+                    <ion-icon name="tablet-landscape"></ion-icon>
+                </div>
+            <span class="ml-3 font-light text-[15px]">Manajemen Guru</span>
+            </div>
+
+            <div class="flex flex-row items-start justify-start px-6  py-1.5 hover:bg-blue-200 w-full cursor-pointer">
+                <div class="text-blue-600 text-xl">
+                    <ion-icon name="school"></ion-icon>
+                </div>
+            <span class="ml-3 font-light text-[15px]">Manajemen Siswa</span>
+            </div>
+
+
+            <div class="flex flex-row items-start justify-start px-6  py-1.5 hover:bg-blue-200 w-full cursor-pointer">
+                <div class="text-blue-600 text-xl">
+                    <ion-icon name="phone-portrait"></ion-icon>
+                </div>
+            <span class="ml-3 font-light text-[15px]">Manajemen Mapel</span>
+            </div>
+
+            <div class="flex flex-row items-start justify-start px-6  py-1.5 hover:bg-blue-200 w-full cursor-pointer">
+                <div class="text-blue-600 text-xl">
+                    <ion-icon name="book"></ion-icon>
+                </div>
+            <span class="ml-3 font-light text-[15px]">Manajemen Materi</span>
+            </div>
+
+
+            <div class="flex flex-row items-center justify-start px-6  py-1.5 hover:bg-blue-200 w-full cursor-pointer">
+                <div class="text-blue-600 text-xl">
+                    <ion-icon name="clipboard"></ion-icon>
+                </div>
+            <span class="ml-3 font-light text-[15px]">Manajemen Kelas</span>
+            </div>
+        </div>
         </nav>
-        <div class="container"><div class="row justify-content-center py-4">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+         {{-- end sidebar --}}
+        <div class="relative z-0 lg:flex-grow">
+             {{-- navbar --}}
+            <header class="flex bg-white border-b text-black items-center px-2">
+                <button
+                    class="p-2 focus:outline-none rounded-md lg:hidden"
+                    @click="open = true"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"
+                        />
+                    </svg>
+                </button>
+                <div class="w-full max-w-full">
+                    <div class="h-[60px] border-b w-full flex items-center justify-end">
+                     <div class="rounded-md px-5 text-black items-center flex">
+                            <ion-icon name="create"></ion-icon>
+                    <span class="p-2">Edit Profile</span>
+                </div>
+                <div class="bg-red-500 rounded-md px-5 text-white items-center flex cursor-pointer mr-2">
+                    <ion-icon name="log-out"></ion-icon>
+                    <span class="p-2">
+                    <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                    </a>
+                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
                     </form>
+                </span>
+            </div>
+            </div>
+        </div>
+            </header>
+             {{-- end navbar --}}
+            {{-- content --}}
+            <div class="flex flex-1 items-center justify-center">
+                <div class="w-full mx-20 my-20">
+                    <div class="py-5 font-bold">
+                        <h2>Edit User</h2>
+                    </div>
+
+                    <form action="{{route('backend.user.edit.process',$user->id)}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-6">
+                            <label for="name" class="text-sm font-medium text-gray-900 block mb-2">Name User</label>
+                            <input type="text" value="{{ $user->name }}" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 text-sm" placeholder="Name User" required="">
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="sekolah" class="text-sm font-medium text-gray-900 block mb-2">Name Sekolah</label>
+                            <input type="text" value="{{ $user->sekolah }}" id="sekolah" name="sekolah" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 text-sm" placeholder="Name Sekolah" required="">
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="email" class="text-sm font-medium text-gray-900 block mb-2">Name Email</label>
+                            <input type="text" value="{{ $user->email }}" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 text-sm" placeholder="Name Email" required="">
+                        </div>
+
+                        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Submit</button>
+                    </form>
+
+                    <div class="py-5 font-bold">
+                        <h2>Edit User Role</h2>
+                    </div>
+
+                    <div class="mb-4 flex items-center space-x-2">
+                        @if ($user->roles)
+                        <span>User has Role : </span>
+                            @foreach ($user->roles as $user_role)
+                                <form action="" class="flex" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="p-2 flex mr-2 text-sm bg-red-500 text-white rounded py-2">
+                                           <div class="mr-2">X</div> {{$user_role->name}}
+                                        </button>
+                                </form>
+                            @endforeach
+                        @endif
+                    </div>
+
+                    <div class="max-w-full">
+
+                    <form action="{{route('b.manage.role.permission.edit',$user->id)}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <label for="permission" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select an option</label>
+                            <select id="permission" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected>Choose a Role</option>
+                            @foreach ($role as $data)
+                                <option value="{{$data->name}}">{{$data->name}}</option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="text-white mt-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Assign</button>
+                    </form>
+
+                    </div>
+
                 </div>
             </div>
         </div>
+            {{-- end content --}}
     </div>
-
 </div>
 
+</div>
+@endsection
 
 
-<div type="button" class="text-white bg-blue-700 cursor-pointer hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            <a href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-            </a>
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-             </form>
-        </div>
