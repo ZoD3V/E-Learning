@@ -92,11 +92,11 @@
 @endsection
 
 @section('content')
-<div class="w-full max-h-screen flex flex-col">
+<div class="w-full min-h-screen flex flex-col">
       {{-- sidebar --}}
       <div class="min-h-screen lg:flex" x-data="{open: false}">
         <nav
-          class="absolute inset-0 transform lg:transform-none lg:opacity-100 duration-200 lg:relative z-10 w-[250px] bg-white border-r text-white h-screen"
+          class="fixed inset-0 transform lg:transform-none lg:opacity-100 duration-200 lg:relative z-10 w-[250px] bg-white border-r text-white"
           :class="{'translate-x-0 ease-in opacity-100':open === true, '-translate-x-full ease-out opacity-0': open === false}"
         >
           <div class="flex justify-center items-center">
