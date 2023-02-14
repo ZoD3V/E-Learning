@@ -10,6 +10,10 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('backend.admin.index');
+        $guru = User::whereHas("roles", function ($q) {
+            $q->where("name", "guru");
+        })->distinct()
+            ->count();
+        return view('backend.admin.index', compact('guru'));
     }
 }

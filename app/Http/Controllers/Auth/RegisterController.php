@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Sekolah;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -67,8 +68,8 @@ class RegisterController extends Controller
     {
         $user = User::create([
             'name' => $data['name'],
-            'sekolah' => $data['sekolah'],
             'email' => $data['email'],
+            'sekolah_id' => $data['sekolah'],
             'password' => Hash::make($data['password']),
         ]);
         $user->assignRole('sekolah');

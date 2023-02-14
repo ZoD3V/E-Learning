@@ -6,32 +6,26 @@ use App\Http\Controllers\Controller;
 use App\Models\Sekolah;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-
-class UserController extends Controller
+class GuruController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['role:admin']);
-    }
-
-
     public function index()
     {
-        $user = User::all();
-        return view('backend.admin.users.index', compact('user'));
+        $guru = User::whereHas("roles", function ($q) {
+            $q->where("name", "guru");
+        })->get();
+        return view('backend.admin.guru.index', compact('guru'));
     }
 
     public function create()
     {
         // $sekolah = User::distinct()->get(['sekolah']);
         $sekolah = Sekolah::all();
-        return view('backend.admin.users.create', compact('sekolah'));
+        return view('backend.admin.guru.create', compact('sekolah'));
     }
 
     public function store(Request $request)
@@ -53,15 +47,16 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), $rule, $messages);
 
         if ($validator->fails()) {
-            return redirect()->route('b.manage.user.index')->withErrors($validator)->withInput();
+            return redirect()->route('b.manage.guru.index')->withErrors($validator)->withInput();
         } else {
-            User::create([
+            $user = User::create([
                 'name'         => $request->name,
-                'email' => $request->email,
                 'sekolah_id' => $request->sekolah,
-                'password' => Hash::make($request->password),
+                'email' => $request->email,
+                'password' => Hash::make($request->password,),
             ]);
-            return redirect()->route('b.manage.user.index')->with('succes', "The User <strong>{$request->name}</strong> created successfully");
+            $user->assignRole('guru');
+            return redirect()->route('b.manage.guru.index')->with('succes', "The User <strong>{$request->name}</strong> created successfully");
         }
     }
 
@@ -75,7 +70,7 @@ class UserController extends Controller
             $user = User::find($id);
 
             if ($role) {
-                return view('backend.admin.users.edit', compact('role', 'permissions', 'user'));
+                return view('backend.admin.guru.edit', compact('role', 'permissions', 'user'));
             } else {
                 return redirect()->route('b.manage.user.index')->with('error', "The #ID {$id} not found in Database!");
             }
@@ -99,46 +94,27 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), $rule, $messages);
 
         if ($validator->fails()) {
-            // return redirect()->route('b.manage.role.index')->withErrors($validator)->withInput();
-            return back()->with('message', $validator);
+            return redirect()->route('b.manage.guru.index')->withErrors($validator)->withInput();
+            // return back()->with('message', $validator);
         } else {
             User::where('id', $request->id)
                 ->update(([
                     'name'         => $request->name,
-                    'sekolah_id'         => $request->sekolah,
+                    'sekolah'         => $request->sekolah,
                     'email'         => $request->email,
                 ]));
-            // return redirect()->route('b.manage.role.index')
-            //     ->with('success', "The Role <strong>{$request->name}</strong> updated successfully");
-            return back()->with('message', 'User Updated');
+            return redirect()->route('b.manage.guru.index')
+                ->with('success', "The Guru <strong>{$request->name}</strong> updated successfully");
+            // return back()->with('message', 'User Updated');
         }
-    }
-
-    public function assignRole(Request $request, $id)
-    {
-        $user = User::find($id);
-        if ($user->assignRole($request->name)) {
-            return back()->with('message', 'Role exist');
-        }
-        $user->assignRole($request->name);
-        return back()->with('message', 'Role added');
-    }
-
-    public function removeRole(Request $request, User $user, Role $role)
-    {
-        if ($user->hasRole($role)) {
-            $user->removeRole($role);
-            return back()->with('message', 'Role revoked');
-        }
-        return back()->with('message', 'Role not exist');
     }
 
     public function destroy($id)
     {
-        $user = User::find($id);
+        $guru = User::find($id);
 
-        $user->delete();
+        $guru->delete();
 
-        return redirect()->route('b.manage.user.index')->with('success', "The Role <strong>{$user->name}</strong> deleted successfully");
+        return redirect()->route('b.manage.guru.index')->with('success', "The Guru <strong>{$guru->name}</strong> deleted successfully");
     }
 }

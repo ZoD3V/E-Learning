@@ -7,20 +7,20 @@
             <div class="p-8 mt-6 lg:mt-0 rounded border bg-white">
                 <table id="users" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
                     <div class="p-2 rounded mb-5 bg-blue-500 text-white text-center cursor-pointer">
-                        <a href="{{ route('b.manage.user.create') }}">Create</a>
+                        <a href="{{ route('b.manage.guru.create') }}">Create</a>
 
                     </div>
                     <thead>
                         <tr class="bg-blue-400 bg-opacity-100 text-white">
                             <th class="px-2">ID</th>
                             <th class="px-2">Name</th>
-                            <th class="px-2">Role</th>
+                            <th class="px-2">Email</th>
+                            <th class="px-2">Sekolah</th>
                             <th class="px-2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-
-                        @foreach ($user as $data)
+                        @foreach ($guru as $data)
                             <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
                                 <td class="px-2 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                     {{ $loop->iteration }}</td>
@@ -28,14 +28,17 @@
                                     {{ $data->name }}
                                 </td>
                                 <td class="text-md text-gray-900 font-light px-2 py-4 whitespace-nowrap">
-                                    {{ $data->role }}
+                                    {{ $data->email }}
+                                </td>
+                                <td class="text-md text-gray-900 font-light px-2 py-4 whitespace-nowrap">
+                                    {{ $data->service_sekolah->name }}
                                 </td>
                                 <td class="text-md text-gray-900 font-light px-5 flex py-4 whitespace-nowrap">
-                                    <a href="{{ route('b.manage.user.edit', $data->id) }}" class="mr-4">
+                                    <a href="{{ route('b.manage.guru.edit', $data->id) }}" class="mr-4">
                                         <ion-icon name="create-outline"></ion-icon>
                                     </a>
 
-                                    <form action="{{ route('b.manage.user.destroy', $data->id) }}" method="post">
+                                    <form action="{{ route('backend.guru.delete', $data->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button>

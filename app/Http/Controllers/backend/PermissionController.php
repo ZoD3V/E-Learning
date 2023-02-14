@@ -9,6 +9,11 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:admin|sekolah']);
+    }
+
     public function index()
     {
         $permissions = Permission::all();
