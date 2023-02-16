@@ -139,21 +139,21 @@
                             <div class="flex flex-row items-center ">
                                 <input type="checkbox" class="appearance-none checked:bg-blue-500 ..." />
                                 <h1 class="cursor-pointer p-2  rounded-md">
-                                    <a href="{{ route('b.manage.role.index') }}">Manajemen Role</a>
+                                    <a href="">Pendahuluan Kelas IPA </a>
                                 </h1>
                             </div>
                               
                             <div class="flex flex-row items-center">
                                 <input type="checkbox" class="appearance-none checked:bg-blue-500 ..." />
                               <h1 class="cursor-pointer p-2 rounded-md">
-                                  <a href="{{ route('b.manage.permission.index') }}">Manajemen Permission</a>
+                                  <a href="">Anounce</a>
                               </h1>
                             </div>
 
                             <div class="flex flex-row items-center">
                              <input type="checkbox" class="appearance-none checked:bg-blue-500 ..." />
                               <h1 class="cursor-pointer p-2  rounded-md">
-                                  <a href="{{ route('b.manage.user.index') }}">Manajemen Users</a>
+                                  <a href="">Pengenalan</a>
                               </h1>
                             </div>
 
