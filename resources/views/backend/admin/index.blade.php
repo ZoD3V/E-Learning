@@ -7,7 +7,7 @@
                 <div
                     class=" flex shadow p-5 rounded-lg justify-between items-center text-gray-800 hover:shadow-lg w-full bg-orange-400">
                     <div class="flex flex-col">
-                        <div class="text-md font-bold text-white text-start ">400</div>
+                        <div class="text-md font-bold text-white text-start ">{{ $kelas->count() }}</div>
                         <div class="text-md font-bold text-white text-start ">Kelas</div>
                     </div>
 

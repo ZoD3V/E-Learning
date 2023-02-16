@@ -47,7 +47,7 @@ class KelasController extends Controller
         ];
 
         $messages = [
-            'name.required' => 'The field <strong>name</strong> is required!',
+            'name.required' => 'field <strong>name</strong> is required!',
         ];
 
         $validator = Validator::make($request->all(), $rule, $messages);
@@ -67,7 +67,12 @@ class KelasController extends Controller
                 'name' => $request->name,
                 'sekolah_id' => $idSekolah,
             ]);
-            return redirect()->route('b.manage.kelas.index')->with('succes', "The kelas <strong>{$request->name}</strong> created successfully");
+
+
+            return redirect()->route('b.manage.kelas.index')->with(
+                'success',
+                "Kelas <strong>{$request->name}</strong> created successfully"
+            );
         }
     }
 
@@ -93,7 +98,7 @@ class KelasController extends Controller
         ];
 
         $messages = [
-            'name.required' => 'The field <strong>name</strong> is required!',
+            'name.required' => 'field <strong>name</strong> is required!',
         ];
 
         $validator = Validator::make($request->all(), $rule, $messages);
@@ -106,9 +111,8 @@ class KelasController extends Controller
                 ->update(([
                     'name'         => $request->name,
                 ]));
-            // return redirect()->route('b.manage.role.index')
-            //     ->with('success', "The Role <strong>{$request->name}</strong> updated successfully");
-            return back()->with('message', 'kelas Updated');
+            return redirect()->route('b.manage.kelas.index')
+                ->with('success', "Kelas <strong>{$request->name}</strong> updated successfully");
         }
     }
 
@@ -119,6 +123,6 @@ class KelasController extends Controller
 
         $user->delete();
 
-        return redirect()->route('b.manage.kelas.index')->with('success', "The kelas <strong>{$user->name}</strong> deleted successfully");
+        return redirect()->route('b.manage.kelas.index')->with('success', "kelas <strong>{$user->name}</strong> deleted successfully");
     }
 }

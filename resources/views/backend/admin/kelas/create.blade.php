@@ -39,3 +39,6 @@
     </div>
     {{-- end content --}}
 @endsection
+
+@section('javascript-admin')
+@endsection

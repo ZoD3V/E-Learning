@@ -27,19 +27,19 @@
                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 text-sm"
                         placeholder="Password" required="">
                 </div>
-                <div class="mb-6">
-                    <label for="sekolah" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select
-                        an option</label>
-                    <select id="permission" name="sekolah"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option selected>Choose a Sekolah</option>
-                        @foreach ($sekolah as $data)
-                            @if ($data->name !== null)
+
+                @role('admin')
+                    <div class="mb-6">
+                        <select id="sekolah_id" name="sekolah_id"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected>Choose a Sekolah</option>
+                            @foreach ($sekolah as $data)
                                 <option value="{{ $data->id }}">{{ $data->name }}</option>
-                            @endif
-                        @endforeach
-                    </select>
-                </div>
+                            @endforeach
+                        </select>
+                    </div>
+                @else
+                @endrole
 
                 <button type="submit"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Submit</button>
