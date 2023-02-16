@@ -201,7 +201,8 @@
                         <div class="text-blue-600 text-xl">
                             <ion-icon name="school"></ion-icon>
                         </div>
-                        <span class="ml-3 font-light text-[15px]">Manajemen Siswa</span>
+                        <a href="{{ route('b.manage.siswa.index') }}" class="ml-3 font-light text-[15px]">Manajemen
+                            Siswa</a>
                     </div>
 
                     <div

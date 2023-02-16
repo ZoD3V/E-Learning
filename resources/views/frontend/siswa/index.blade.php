@@ -86,7 +86,7 @@
                 <div class="grid grid-cols-4 gap-4 w-full ">
                     @foreach ($test = [1, 2, 3, 4, 5, 6, 7, 8] as $item)
                         <div class=" py-5 sm:py-10 bg-white border-1  drop-shadow-xl rounded flex flex-col items-center">
-                            <a href="/" class="flex items-center w-20 md:w-40 ">
+                            <a href="{{ route('frontend.siswa.detail') }}" class="flex items-center w-20 md:w-40 ">
                                 <img src="{{ asset('assets/images/teacher.png') }}" class="" alt="Flowbite Logo" />
                             </a>
                             <p class="text-center text-gray-500">Kimia</p>

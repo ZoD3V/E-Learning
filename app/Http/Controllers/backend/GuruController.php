@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Sekolah;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Permission;
@@ -33,15 +34,11 @@ class GuruController extends Controller
         $rule = [
             'name' => 'required',
             'email' => 'required',
-            'sekolah' => 'required',
-            'password' => 'required',
         ];
 
         $messages = [
             'name.required' => 'The field <strong>name</strong> is required!',
             'email.required' => 'The field <strong>email</strong> is required!',
-            'sekolah.required' => 'The field <strong>sekolah</strong> is required!',
-            'password.required' => 'The field <strong>password</strong> is required!',
         ];
 
         $validator = Validator::make($request->all(), $rule, $messages);
@@ -49,14 +46,31 @@ class GuruController extends Controller
         if ($validator->fails()) {
             return redirect()->route('b.manage.guru.index')->withErrors($validator)->withInput();
         } else {
-            $user = User::create([
-                'name'         => $request->name,
-                'sekolah_id' => $request->sekolah,
-                'email' => $request->email,
-                'password' => Hash::make($request->password,),
-            ]);
-            $user->assignRole('guru');
-            return redirect()->route('b.manage.guru.index')->with('succes', "The User <strong>{$request->name}</strong> created successfully");
+            if (auth()->user()->roles->pluck('name')->first() == 'admin') {
+                $idSekolah = $request->sekolah_id;
+            } else {
+                $idSekolah = Auth::user()->sekolah_id;
+            }
+
+            if ($request->password) {
+                $user = User::create([
+                    'name'         => $request->name,
+                    'sekolah_id'         => $idSekolah,
+                    'email'         => $request->email,
+                    'password'         => Hash::make($request->password),
+                ]);
+                $user->assignRole('guru');
+            } else {
+                $user = User::create([
+                    'name'         => $request->name,
+                    'sekolah_id'         => $idSekolah,
+                    'email'         => $request->email,
+                    'password'         => Hash::make($request->password),
+                ]);
+                $user->assignRole('guru');
+            }
+
+            return redirect()->route('b.manage.guru.index')->with('succes', "The Guru <strong>{$request->name}</strong> created successfully");
         }
     }
 
@@ -81,13 +95,11 @@ class GuruController extends Controller
     {
         $rule = [
             'name' => 'required',
-            'sekolah' => 'required',
             'email' => 'required',
         ];
 
         $messages = [
             'name.required' => 'The field <strong>name</strong> is required!',
-            'sekolah.required' => 'The field <strong>sekolah</strong> is required!',
             'email.required' => 'The field <strong>email</strong> is required!',
         ];
 
@@ -97,12 +109,31 @@ class GuruController extends Controller
             return redirect()->route('b.manage.guru.index')->withErrors($validator)->withInput();
             // return back()->with('message', $validator);
         } else {
-            User::where('id', $request->id)
-                ->update(([
-                    'name'         => $request->name,
-                    'sekolah'         => $request->sekolah,
-                    'email'         => $request->email,
-                ]));
+
+            if (auth()->user()->roles->pluck('name')->first() == 'admin') {
+                $idSekolah = $request->sekolah_id;
+            } else {
+                $idSekolah = Auth::user()->sekolah_id;
+            }
+
+            if ($request->password) {
+                User::where('id', $request->id)
+                    ->update(([
+                        'name'         => $request->name,
+                        'sekolah_id'         => $idSekolah,
+                        'email'         => $request->email,
+                        'password'         => Hash::make($request->password),
+                    ]));
+            } else {
+                User::where('id', $request->id)
+                    ->update(([
+                        'name'         => $request->name,
+                        'sekolah_id'         => $idSekolah,
+                        'email'         => $request->email,
+                    ]));
+            }
+
+
             return redirect()->route('b.manage.guru.index')
                 ->with('success', "The Guru <strong>{$request->name}</strong> updated successfully");
             // return back()->with('message', 'User Updated');
