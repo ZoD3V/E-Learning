@@ -2,6 +2,8 @@
 
 @section('content-admin')
     {{-- content --}}
+
+
     <div class="flex flex-1 items-center justify-center">
         <div class="container w-full md:w-4/5 xl:w-3/5  mx-auto px-2 mt-10">
             <div class="p-8 mt-6 lg:mt-0 rounded border bg-white">

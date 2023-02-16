@@ -17,18 +17,31 @@
                         placeholder="Name User" required="">
                 </div>
 
-                <div class="mb-6">
-                    <label for="sekolah" class="text-sm font-medium text-gray-900 block mb-2">Name Sekolah</label>
-                    <input type="text" value="{{ $user->sekolah }}" id="sekolah" name="sekolah"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 text-sm"
-                        placeholder="Name Sekolah" required="">
-                </div>
+                @role('admin')
+                    <div class="mb-6">
+                        <select id="sekolah_id" name="sekolah_id"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected>Choose a Sekolah</option>
+                            @foreach ($sekolah as $data)
+                                <option value="{{ $data->id }}">{{ $data->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                @else
+                @endrole
 
                 <div class="mb-6">
                     <label for="email" class="text-sm font-medium text-gray-900 block mb-2">Name Email</label>
                     <input type="text" value="{{ $user->email }}" id="email" name="email"
                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 text-sm"
                         placeholder="Name Email" required="">
+                </div>
+
+                <div class="mb-6">
+                    <label for="password" class="text-sm font-medium text-gray-900 block mb-2">Password</label>
+                    <input type="text" id="password" name="password"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 text-sm"
+                        placeholder="Password">
                 </div>
 
                 <button type="submit"
