@@ -6,10 +6,9 @@
         <div class="container w-full md:w-4/5 xl:w-3/5  mx-auto px-2 mt-10">
             <div class="p-8 mt-6 lg:mt-0 rounded border bg-white">
                 <table id="users" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
-                    <div class="p-2 rounded mb-5 bg-blue-500 text-white text-center cursor-pointer">
-                        <a href="{{ route('b.manage.guru.create') }}">Create</a>
+                    <a href="{{ route('b.manage.guru.create') }}"
+                        class="p-2 rounded mb-5 bg-blue-500 text-white text-center cursor-pointer w-full">Create</a>
 
-                    </div>
                     <thead>
                         <tr class="bg-blue-400 bg-opacity-100 text-white">
                             <th class="px-2">ID</th>

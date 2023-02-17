@@ -192,14 +192,17 @@
                         <a href="{{ route('b.manage.guru.index') }}" class="ml-3 font-light text-[15px]">Manajemen Guru</a>
                     </div>
 
-                    <div
-                        class="flex flex-row items-start justify-start px-6 py-1.5 hover:bg-blue-200 w-full cursor-pointer">
-                        <div class="text-blue-600 text-xl">
-                            <ion-icon name="planet"></ion-icon>
+                    @role('admin')
+                        <div
+                            class="flex flex-row items-start justify-start px-6 py-1.5 hover:bg-blue-200 w-full cursor-pointer">
+                            <div class="text-blue-600 text-xl">
+                                <ion-icon name="planet"></ion-icon>
+                            </div>
+                            <a href="{{ route('b.manage.sekolah.index') }}" class="ml-3 font-light text-[15px]">Manajemen
+                                Sekolah</a>
                         </div>
-                        <a href="{{ route('b.manage.sekolah.index') }}" class="ml-3 font-light text-[15px]">Manajemen
-                            Sekolah</a>
-                    </div>
+                    @else
+                    @endrole
 
 
                     <div
