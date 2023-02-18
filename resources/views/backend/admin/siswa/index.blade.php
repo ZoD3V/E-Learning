@@ -7,7 +7,7 @@
             <div class="p-8 mt-6 lg:mt-0 rounded border bg-white">
                 <table id="users" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
                     <div class="">
-                        <a href="{{ route('b.manage.role.create') }}"
+                        <a href="{{ route('b.manage.siswa.create') }}"
                             class="flex justify-center p-2 rounded mb-5 bg-blue-500 text-white text-center cursor-pointer">Create</a>
 
                     </div>
@@ -15,23 +15,31 @@
                         <tr class="bg-blue-400 bg-opacity-100 text-white">
                             <th class="px-2">ID</th>
                             <th class="px-2">Name</th>
+                            <th class="px-2">Email</th>
+                            <th class="px-2">Sekolah</th>
                             <th class="px-2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($role as $data)
+                        @foreach ($siswa as $data)
                             <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
                                 <td class="px-2 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                     {{ $loop->iteration }}</td>
                                 <td class="text-md text-gray-900 font-light px-2 py-4 whitespace-nowrap">
                                     {{ $data->name }}
                                 </td>
+                                <td class="text-md text-gray-900 font-light px-2 py-4 whitespace-nowrap">
+                                    {{ $data->email }}
+                                </td>
+                                <td class="text-md text-gray-900 font-light px-2 py-4 whitespace-nowrap">
+                                    {{ $data->service_sekolah->name }}
+                                </td>
                                 <td class="text-md text-gray-900 font-light px-5 flex py-4 whitespace-nowrap">
-                                    <a href="{{ route('b.manage.role.edit', $data->id) }}" class="mr-4">
+                                    <a href="{{ route('b.manage.siswa.edit', $data->id) }}" class="mr-4">
                                         <ion-icon name="create-outline"></ion-icon>
                                     </a>
 
-                                    <form action="{{ route('backend.role.delete', $data->id) }}" method="post">
+                                    <form action="{{ route('backend.siswa.delete', $data->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button>

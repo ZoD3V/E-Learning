@@ -9,93 +9,68 @@
     <style>
         /*Overrides for Tailwind CSS */
 
-        /*Form fields*/
-        .dataTables_wrapper select,
+        /Form fields/ .dataTables_wrapper select,
         .dataTables_wrapper .dataTables_filter input {
             color: #4a5568;
-            /*text-gray-700*/
-            padding-left: 1rem;
-            /*pl-4*/
-            padding-right: 1rem;
-            /*pl-4*/
-            padding-top: .5rem;
-            /*pl-2*/
-            padding-bottom: .5rem;
-            /*pl-2*/
-            line-height: 1.25;
-            /*leading-tight*/
-            border-width: 2px;
-            /*border-2*/
-            border-radius: .25rem;
+            /text-gray-700/ padding-left: 1rem;
+            /pl-4/ padding-right: 1rem;
+            /pl-4/ padding-top: .5rem;
+            /pl-2/ padding-bottom: .5rem;
+            /pl-2/ line-height: 1.25;
+            /leading-tight/ border-width: 2px;
+            /border-2/ border-radius: .25rem;
             border-color: #edf2f7;
-            /*border-gray-200*/
-            background-color: #edf2f7;
-            /*bg-gray-200*/
+            /border-gray-200/ background-color: #edf2f7;
+            /bg-gray-200/
         }
 
-        /*Row Hover*/
-        table.dataTable.hover tbody tr:hover,
+        /Row Hover/ table.dataTable.hover tbody tr:hover,
         table.dataTable.display tbody tr:hover {
             background-color: #ebf4ff;
-            /*bg-indigo-100*/
+            /bg-indigo-100/
         }
 
-        /*Pagination Buttons*/
-        .dataTables_wrapper .dataTables_paginate .paginate_button {
+        /Pagination Buttons/ .dataTables_wrapper .dataTables_paginate .paginate_button {
             font-weight: 700;
-            /*font-bold*/
-            border-radius: .25rem;
-            /*rounded*/
-            border: 1px solid transparent;
+            /font-bold/ border-radius: .25rem;
+            /rounded/ border: 1px solid transparent;
             padding: 5px;
-            /*border border-transparent*/
+            /border border-transparent/
         }
 
         /*Pagination Buttons - Current selected */
         .dataTables_wrapper .dataTables_paginate .paginate_button.current {
             color: #fff !important;
-            /*text-white*/
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
-            /*shadow*/
-            font-weight: 700;
-            /*font-bold*/
-            border-radius: .25rem;
-            /*rounded*/
-            background: #667eea !important;
-            /*bg-indigo-500*/
-            border: 1px solid transparent;
-            /*border border-transparent*/
+            /text-white/ box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+            /shadow/ font-weight: 700;
+            /font-bold/ border-radius: .25rem;
+            /rounded/ background: #667eea !important;
+            /bg-indigo-500/ border: 1px solid transparent;
+            /border border-transparent/
         }
 
         /*Pagination Buttons - Hover */
         .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
             color: #fff !important;
-            /*text-white*/
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
-            /*shadow*/
-            font-weight: 700;
-            /*font-bold*/
-            border-radius: .25rem;
-            /*rounded*/
-            background: #667eea !important;
-            /*bg-indigo-500*/
-            border: 1px solid transparent;
-            /*border border-transparent*/
+            /text-white/ box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+            /shadow/ font-weight: 700;
+            /font-bold/ border-radius: .25rem;
+            /rounded/ background: #667eea !important;
+            /bg-indigo-500/ border: 1px solid transparent;
+            /border border-transparent/
         }
 
         /*Add padding to bottom border */
         table.dataTable.no-footer {
             border-bottom: 1px solid #e2e8f0;
-            /*border-b-1 border-gray-300*/
-            margin-top: 0.75em;
+            /border-b-1 border-gray-300/ margin-top: 0.75em;
             margin-bottom: 0.75em;
         }
 
-        /*Change colour of responsive icon*/
-        table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before,
+        /Change colour of responsive icon/ table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before,
         table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
             background-color: #667eea !important;
-            /*bg-indigo-500*/
+            /bg-indigo-500/
         }
     </style>
 @endsection
@@ -144,19 +119,20 @@
                 </div>
 
                 <div class="flex flex-col justify-start items-start w-full space-y-4 text-black mt-10">
-                    <div class="flex flex-row items-start justify-start px-6 py-2 hover:bg-blue-200 w-full cursor-pointer">
+                    <a href="{{ route('b.manage.admin.index') }}"
+                        class="flex flex-row items-start justify-start px-6 py-2 hover:bg-blue-200 w-full cursor-pointer">
                         <div class="text-blue-600 text-xl">
                             <ion-icon name="grid"></ion-icon>
                         </div>
-                        <a href="{{ route('b.manage.admin.index') }}" class="ml-3 font-light text-[15px]">Dashboard
-                        </a>
-                    </div>
+                        <div class="ml-3 font-light text-[15px]">Dashboard
+                        </div>
+                    </a>
 
                     <span class="text-center px-6 py-2">Menu</span>
 
                     @role('admin')
                         <div x-data="{ openDrop: false }" class="w-full">
-                            <div
+                            <div x-on:click="openDrop = !openDrop"
                                 class="flex flex-row items-center justify-between px-6 py-1.5 hover:bg-blue-200 w-full cursor-pointer">
                                 <div class="flex">
                                     <div class="text-blue-600 text-xl">
@@ -184,60 +160,59 @@
                     @else
                     @endrole
 
-                    <div
+                    <a href="{{ route('b.manage.guru.index') }}"
                         class="flex flex-row items-start justify-start px-6 py-1.5 hover:bg-blue-200 w-full cursor-pointer">
                         <div class="text-blue-600 text-xl">
                             <ion-icon name="tablet-landscape"></ion-icon>
                         </div>
-                        <a href="{{ route('b.manage.guru.index') }}" class="ml-3 font-light text-[15px]">Manajemen Guru</a>
-                    </div>
+                        <div class="ml-3 font-light text-[15px]">Manajemen Guru</div>
+                    </a>
 
                     @role('admin')
-                        <div
+                        <a href="{{ route('b.manage.sekolah.index') }}"
                             class="flex flex-row items-start justify-start px-6 py-1.5 hover:bg-blue-200 w-full cursor-pointer">
                             <div class="text-blue-600 text-xl">
                                 <ion-icon name="planet"></ion-icon>
                             </div>
-                            <a href="{{ route('b.manage.sekolah.index') }}" class="ml-3 font-light text-[15px]">Manajemen
-                                Sekolah</a>
-                        </div>
+                            <div href="{{ route('b.manage.sekolah.index') }}" class="ml-3 font-light text-[15px]">Manajemen
+                                Sekolah</div>
+                        </a>
                     @else
                     @endrole
 
-
-                    <div
+                    <a href="{{ route('b.manage.siswa.index') }}"
                         class="flex flex-row items-start justify-start px-6 py-1.5 hover:bg-blue-200 w-full cursor-pointer">
                         <div class="text-blue-600 text-xl">
                             <ion-icon name="school"></ion-icon>
                         </div>
-                        <span class="ml-3 font-light text-[15px]">Manajemen Siswa</span>
-                    </div>
+                        <div class="ml-3 font-light text-[15px]">Manajemen
+                            Siswa</div>
+                    </a>
 
-                    <div
+                    <a href="{{ route('b.manage.mapel.index') }}"
                         class="flex flex-row items-start justify-start px-6 py-1.5 hover:bg-blue-200 w-full cursor-pointer">
                         <div class="text-blue-600 text-xl">
                             <ion-icon name="phone-portrait"></ion-icon>
                         </div>
-                        <a href="{{ route('b.manage.mapel.index') }}" class="ml-3 font-light text-[15px]">Manajemen
-                            Mapel</a>
-                    </div>
+                        <div class="ml-3 font-light text-[15px]">Manajemen
+                            Mapel</div>
+                    </a>
 
-                    <div
-                        class="flex flex-row items-start justify-start px-6 py-1.5 hover:bg-blue-200 w-full cursor-pointer">
+                    <a class="flex flex-row items-start justify-start px-6 py-1.5 hover:bg-blue-200 w-full cursor-pointer">
                         <div class="text-blue-600 text-xl">
                             <ion-icon name="book"></ion-icon>
                         </div>
                         <span class="ml-3 font-light text-[15px]">Manajemen Materi</span>
-                    </div>
+                    </a>
 
-                    <div
+                    <a href="{{ route('b.manage.kelas.index') }}"
                         class="flex flex-row items-center justify-start px-6 py-1.5 hover:bg-blue-200 w-full cursor-pointer">
                         <div class="text-blue-600 text-xl">
                             <ion-icon name="clipboard"></ion-icon>
                         </div>
-                        <a href="{{ route('b.manage.kelas.index') }}" class="ml-3 font-light text-[15px]">Manajemen
-                            Kelas</a>
-                    </div>
+                        <div class="ml-3 font-light text-[15px]">Manajemen
+                            Kelas</div>
+                    </a>
                 </div>
             </nav>
             {{-- end sidebar --}}

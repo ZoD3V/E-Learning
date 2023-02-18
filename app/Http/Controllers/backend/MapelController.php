@@ -14,7 +14,7 @@ class MapelController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:admin|sekolah']);
+        $this->middleware(['role:admin|sekolah|guru']);
     }
 
     public function index()
@@ -100,8 +100,12 @@ class MapelController extends Controller
             return redirect()->route('b.manage.mapel.index')->with('error', 'The ID is empty!');
         } else {
             $mapel = Mapel::find($id);
-            $idSekolah = Auth::user()->sekolah_id;
-            $kelas = Kelas::where('sekolah_id', $idSekolah)->get();
+            if (auth()->user()->hasRole('admin')) {
+                $kelas = Kelas::all();
+            } else {
+                $idSekolah = Auth::user()->sekolah_id;
+                $kelas = Kelas::where('sekolah_id', $idSekolah)->get();
+            }
 
             if ($mapel) {
                 return view('backend.admin.mapel.edit', compact('mapel', 'kelas'));

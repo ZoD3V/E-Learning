@@ -17,8 +17,8 @@
 
 @section('content')
     {{-- Navbar --}}
-    <nav class="bg-white border-gray-200 px-2 sm:px-36 py-2.5 rounded dark:bg-gray-900 fixed w-full shadow-md z-10	">
-        <div class="container flex flex-wrap items-center justify-between mx-auto">
+    <nav class="bg-white border-gray-200 px-2 sm:px-20 py-2.5 rounded dark:bg-gray-900 w-full shadow-md z-20	">
+        <div class="container flex flex-wrap items-left justify-between mx-auto">
             <div class=" flex flex-wrap   ">
                 <a href="/" class="flex items-center pb-3">
                     <img src="{{ asset('assets/images/Logo.png') }}" class="h-9" alt="Flowbite Logo" />
@@ -29,25 +29,34 @@
                         <li>
                             <a href="#"
                                 class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                                aria-current="page">Kelas</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Materi</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Hubungi
-                                kami</a>
+                                aria-current="page">| IPA - Sistem Reproduksi Manusia</a>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="flex items-center space-x-2" onclick="">
-                <p class="text-sm">Moen Doe</p>
-                <p>-</p>
-                <p class="text-sm">XI-MIPA</p>
+            <div class="flex items-center space-x-10 " onclick="">
+                <ul>
+                    <li>
+                        <p class="text-sm">Muhammad Husna Japa</p>
+                    </li>
+                    <li>
+                        <p class="text-sm">XI-MIPA</p>
+                    </li>
+                </ul>
+                <div class="bg-red-500 rounded-md px-5 text-white items-center flex cursor-pointer ">
+                    <ion-icon name="log-out"></ion-icon>
+                    <span class="p-2">
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </span>
+                </div>
             </div>
 
         </div>
@@ -56,7 +65,7 @@
     <div class="max-h-screen max-w-full">
         <div class="flex flex-col h-[80vh] pt-32 items-start  md:h-[120vh] md:mx-20 mx-5">
             <div class="flex flex-col items-start ">
-                <h1 class=" text-2xl  md:text-3xl font-bold text-blue-500 ">Selamat datang Moen Doe</h1>
+                <h1 class=" text-2xl  md:text-3xl font-bold text-blue-500 ">Selamat datang {{ Auth::user()->name }}</h1>
                 <p class=" text-xl md:text-xl text-blue-500 font-semibold 	py-1">XI-MIPA</p>
                 <p class="md:text-sm ">Semoga aktivitas belajarmu menyenangkan.</p>
             </div>
@@ -83,17 +92,17 @@
             </div>
 
             <div class="h-[100vh] max-w-full flex flex-column justify-center items-center my-20 w-full">
-                <div class="grid grid-cols-4 gap-4 w-full ">
+                {{-- <div class="grid grid-cols-4 gap-4 w-full ">
                     @foreach ($test = [1, 2, 3, 4, 5, 6, 7, 8] as $item)
                         <div class=" py-5 sm:py-10 bg-white border-1  drop-shadow-xl rounded flex flex-col items-center">
-                            <a href="/" class="flex items-center w-20 md:w-40 ">
+                            <a href="{{ route('frontend.siswa.detail') }}" class="flex items-center w-20 md:w-40 ">
                                 <img src="{{ asset('assets/images/teacher.png') }}" class="" alt="Flowbite Logo" />
                             </a>
                             <p class="text-center text-gray-500">Kimia</p>
                         </div>
                     @endforeach
 
-                </div>
+                </div> --}}
             </div>
         </div>
 

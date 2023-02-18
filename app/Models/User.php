@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'sekolah_id',
+        'kelas_id',
     ];
 
     public function service_sekolah()

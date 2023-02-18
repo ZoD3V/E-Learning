@@ -7,7 +7,6 @@
             <div class="py-5 font-bold">
                 <h2>Edit Mapel</h2>
             </div>
-
             <form action="{{ route('backend.mapel.edit.process', $mapel->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-6">
@@ -21,7 +20,8 @@
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option selected>Choose a Kelas</option>
                         @foreach ($kelas as $data)
-                            <option value="{{ $data->id }}">{{ $data->name }}</option>
+                            <option value="{{ $data->id }}" @selected($data->id == $mapel->kelas_id)>{{ $data->name }} -
+                                {{ $data->service_kelas_sekolah->name }}</option>
                         @endforeach
                     </select>
                 </div>

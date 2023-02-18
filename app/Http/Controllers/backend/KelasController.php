@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\Kelas;
 use App\Models\Sekolah;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -13,7 +14,7 @@ class KelasController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:admin|sekolah']);
+        $this->middleware(['role:admin|sekolah|guru']);
     }
 
     public function index()
@@ -82,9 +83,10 @@ class KelasController extends Controller
             return redirect()->route('b.manage.kelas.index')->with('error', 'The ID is empty!');
         } else {
             $kelas = Kelas::find($id);
-
+            $user = User::find($id);
+            $sekolah = Sekolah::all();
             if ($kelas) {
-                return view('backend.admin.kelas.edit', compact('kelas'));
+                return view('backend.admin.kelas.edit', compact('kelas', 'sekolah', 'user'));
             } else {
                 return redirect()->route('b.manage.kelas.index')->with('error', "The #ID {$id} not found in Database!");
             }

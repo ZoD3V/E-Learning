@@ -16,9 +16,16 @@ class GuruController extends Controller
 {
     public function index()
     {
-        $guru = User::whereHas("roles", function ($q) {
-            $q->where("name", "guru");
-        })->get();
+        if (auth()->user()->hasRole('admin')) {
+            $guru = User::whereHas("roles", function ($q) {
+                $q->where("name", "guru");
+            })->get();
+        } else {
+            $idSekolah = Auth::user()->sekolah_id;
+            $guru = User::whereHas("roles", function ($q) {
+                $q->where("name", "guru");
+            })->where('sekolah_id', $idSekolah)->get();
+        }
         return view('backend.admin.guru.index', compact('guru'));
     }
 
@@ -128,9 +135,10 @@ class GuruController extends Controller
             $role = Role::all();
             $permissions = Permission::find($id);
             $user = User::find($id);
+            $sekolah = Sekolah::all();
 
             if ($role) {
-                return view('backend.admin.guru.edit', compact('role', 'permissions', 'user'));
+                return view('backend.admin.guru.edit', compact('role', 'permissions', 'user', 'sekolah'));
             } else {
                 return redirect()->route('b.manage.user.index')->with('error', "The #ID {$id} not found in Database!");
             }

@@ -13,7 +13,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\frontend\HomeController as Home;
 use App\Http\Controllers\frontend\DaftarSekolahController;
-
+use App\Http\Controllers\frontend\SiswaHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,12 +27,10 @@ use App\Http\Controllers\frontend\DaftarSekolahController;
 */
 
 Route::get('/', [Home::class, 'index'])->name("frontend.home.index");
-Route::get('/daftar-sekolah', [DaftarSekolahController::class, 'index'])->name("frontend.sekolah.index");
 
 Auth::routes();
 
 // Route::get('/admin/home', [HomeController::class, 'index'])->name('home');
-Route::get('/siswa/home', [SiswaController::class, 'index'])->name('b.manage.siswa.index');
 
 Route::group(['middleware' => ['role:admin|sekolah|guru']], function () {
     Route::get('/admin/home', [AdminController::class, 'index'])->name('b.manage.admin.index');
@@ -81,12 +79,7 @@ Route::get('/admin/sekolah/edit/{id?}', [SekolahController::class, 'edit'])->nam
 Route::post('/backend/sekolah/process/{id?}', [SekolahController::class, 'edit_process'])->name('backend.sekolah.edit.process');
 Route::delete('/backend/sekolah/delete/{id?}', [SekolahController::class, 'destroy'])->name('backend.sekolah.delete');
 
-Route::get('/admin/manage/kelas', [KelasController::class, 'index'])->name('b.manage.kelas.index');
-Route::get('/admin/kelas/create', [KelasController::class, 'create'])->name('b.manage.kelas.create');
-Route::post('/admin/kelas/create/process', [KelasController::class, 'store'])->name('b.manage.kelas.create.process');
-Route::get('/admin/kelas/edit/{id?}', [KelasController::class, 'edit'])->name('b.manage.kelas.edit');
-Route::post('/backend/kelas/process/{id?}', [KelasController::class, 'edit_process'])->name('backend.kelas.edit.process');
-Route::delete('/backend/kelas/delete/{id?}', [KelasController::class, 'destroy'])->name('backend.kelas.delete');
+
 
 Route::get('/admin/manage/mapel', [MapelController::class, 'index'])->name('b.manage.mapel.index');
 Route::get('/admin/mapel/create', [MapelController::class, 'create'])->name('b.manage.mapel.create');
@@ -94,3 +87,28 @@ Route::post('/admin/mapel/create/process', [MapelController::class, 'store'])->n
 Route::get('/admin/mapel/edit/{id?}', [MapelController::class, 'edit'])->name('b.manage.mapel.edit');
 Route::post('/backend/mapela/process/{id?}', [MapelController::class, 'edit_process'])->name('backend.mapel.edit.process');
 Route::delete('/backend/mapel/delete/{id?}', [MapelController::class, 'destroy'])->name('backend.mapel.delete');
+
+//KELAS
+Route::get('/admin/manage/kelas', [KelasController::class, 'index'])->name('b.manage.kelas.index');
+Route::delete('/backend/kelas/delete/{id?}', [KelasController::class, 'destroy'])->name('backend.kelas.delete');
+
+Route::group(['middleware' => ['permission:create kelas']], function () {
+    Route::get('/admin/kelas/create', [KelasController::class, 'create'])->name('b.manage.kelas.create');
+    Route::post('/admin/kelas/create/process', [KelasController::class, 'store'])->name('b.manage.kelas.create.process');
+});
+
+Route::group(['middleware' => ['permission:edit kelas']], function () {
+    Route::get('/admin/kelas/edit/{id?}', [KelasController::class, 'edit'])->name('b.manage.kelas.edit');
+    Route::post('/backend/kelas/process/{id?}', [KelasController::class, 'edit_process'])->name('backend.kelas.edit.process');
+});
+
+// Siswa Backend
+Route::get('/admin/manage/siswa', [SiswaController::class, 'index'])->name('b.manage.siswa.index');
+Route::get('/admin/siswa/create', [SiswaController::class, 'create'])->name('b.manage.siswa.create');
+Route::post('/admin/siswa/create/process', [SiswaController::class, 'store'])->name('b.manage.siswa.create.process');
+Route::get('/admin/siswa/edit/{id?}', [SiswaController::class, 'edit'])->name('b.manage.siswa.edit');
+Route::post('/backend/siswa/process/{id?}', [SiswaController::class, 'edit_process'])->name('backend.siswa.edit.process');
+Route::delete('/backend/siswa/delete/{id?}', [SiswaController::class, 'destroy'])->name('backend.siswa.delete');
+
+// Siswa Frontend
+Route::get('/siswa/home', [SiswaHomeController::class, 'index'])->name('f.manage.siswa.index');

@@ -24,7 +24,7 @@
                 <div
                     class=" flex shadow p-5 rounded-lg justify-between items-center text-gray-800 hover:shadow-lg w-full bg-green-400">
                     <div class="flex flex-col">
-                        <div class="text-md font-bold text-white text-start ">120</div>
+                        <div class="text-md font-bold text-white text-start ">{{ $siswa }}</div>
                         <div class="text-md font-bold text-white text-start ">Siswa</div>
                     </div>
 
