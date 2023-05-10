@@ -38,10 +38,10 @@
             <div class="flex items-center space-x-10 " onclick="">
                 <ul>
                     <li>
-                        <p class="text-sm">Muhammad Husna Japa</p>
+                        <p class="text-sm">{{ Auth::user()->name }}</p>
                     </li>
                     <li>
-                        <p class="text-sm">XI-MIPA</p>
+                        <p class="text-sm">{{ Auth::user()->service_kelas_user->name }}</p>
                     </li>
                 </ul>
                 <div class="bg-red-500 rounded-md px-5 text-white items-center flex cursor-pointer ">
@@ -63,15 +63,17 @@
     </nav>
 
     <div class="max-h-screen max-w-full">
-        <div class="flex flex-col h-[80vh] pt-32 items-start  md:h-[120vh] md:mx-20 mx-5">
+        <div class="flex flex-col h-[30vh] pt-20 items-start  md:h-[120vh] md:mx-20 mx-5">
             <div class="flex flex-col items-start ">
                 <h1 class=" text-2xl  md:text-3xl font-bold text-blue-500 ">Selamat datang {{ Auth::user()->name }}</h1>
-                <p class=" text-xl md:text-xl text-blue-500 font-semibold 	py-1">XI-MIPA</p>
+                <p class=" text-xl md:text-xl text-blue-500 font-semibold 	py-1">
+                    {{ Auth::user()->service_kelas_user->name }}</p>
                 <p class="md:text-sm ">Semoga aktivitas belajarmu menyenangkan.</p>
             </div>
 
             <div class="flex flex-col items-start pt-5 w-full">
-                <h1 class=" text-xl md:text-3xl font-bold pb-2">XI-MIPA - Kimia - Reaksi Redoks </h1>
+                <h1 class=" text-xl md:text-3xl font-bold pb-2">{{ Auth::user()->service_kelas_user->name }} - Reaksi Redoks
+                </h1>
                 <div class="md:bg-gray-700 rounded p-5 bg-gray-700 flex w-full">
                     <div class="flex justify-between w-full items-center ">
                         <div class="flex flex-col">
@@ -92,7 +94,7 @@
             </div>
 
             <div class="h-[100vh] max-w-full flex flex-column justify-center items-center my-20 w-full">
-                {{-- <div class="grid grid-cols-4 gap-4 w-full ">
+                <div class="grid grid-cols-4 gap-4 w-full ">
                     @foreach ($test = [1, 2, 3, 4, 5, 6, 7, 8] as $item)
                         <div class=" py-5 sm:py-10 bg-white border-1  drop-shadow-xl rounded flex flex-col items-center">
                             <a href="{{ route('frontend.siswa.detail') }}" class="flex items-center w-20 md:w-40 ">
@@ -102,14 +104,14 @@
                         </div>
                     @endforeach
 
-                </div> --}}
+                </div>
             </div>
         </div>
 
     </div>
 
     {{-- {Footer} --}}
-    <div class="flex flex-col mt-96 my-20 mx-20 pt-96">
+    <div class="flex flex-col mt-96 md:mx-20 my-20 mx-5 pt-96 md:pt-20">
         <span class="h-0.5 w-full bg-gray-400 lg:w-full"></span>
         <p class=" text-sm md:text-lg my-5">© Klassin 2022 - all right reserved</p>
     </div>

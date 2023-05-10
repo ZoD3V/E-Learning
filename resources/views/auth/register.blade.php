@@ -15,7 +15,7 @@
                 <div>
                     <button type="button"
                         class="text-black border-2 border-blue-700 hover:bg-blue-800 focus:ring-4 hover:text-white focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><a
-                            href="{{ route('login') }}">{{ __('Masuk') }}</a></button>
+                            href="{{ route('login') }}">{{ __('Login') }}</a></button>
                 </div>
             </div>
         </nav>

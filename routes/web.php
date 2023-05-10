@@ -112,3 +112,4 @@ Route::delete('/backend/siswa/delete/{id?}', [SiswaController::class, 'destroy']
 
 // Siswa Frontend
 Route::get('/siswa/home', [SiswaHomeController::class, 'index'])->name('f.manage.siswa.index');
+Route::get('/siswa/detail', [SiswaHomeController::class, 'detail'])->name('frontend.siswa.detail');

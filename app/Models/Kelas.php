@@ -25,6 +25,11 @@ class Kelas extends Model
         return $this->hasMany(Materi::class);
     }
 
+    public function service_user()
+    {
+        return $this->hasMany(User::class);
+    }
+
     public function service_kelas_mapel()
     {
         return $this->hasMany(Mapel::class);

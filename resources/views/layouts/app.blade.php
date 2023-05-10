@@ -30,9 +30,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
-        integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+    <script>
+        const hamburger = document.getElementById("hamburger");
+        const navMenu = document.getElementById("nav-menu");
+
+        hamburger.addEventListener("click", function() {
+            hamburger.classList.toggle("hamburger-active");
+            navMenu.classList.toggle("hidden");
+        });
+    </script>
     @if (Session::has('error'))
         <script>
             toastr.error("{!! Session::get('error') !!}")

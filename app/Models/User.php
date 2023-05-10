@@ -31,6 +31,11 @@ class User extends Authenticatable
         return $this->belongsTo(Sekolah::class, 'sekolah_id', 'id');
     }
 
+    public function service_kelas_user()
+    {
+        return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
