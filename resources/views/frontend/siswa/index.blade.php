@@ -6,42 +6,26 @@
 
 @section('javascript')
     <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
-    <script src="./TW-ELEMENTS-PATH/dist/js/index.min.js"></script>
-
-    <script>
-        < script src = "../path/to/flowbite/dist/flowbite.js" >
-    </script>
-
-    </script>
 @endsection
 
 @section('content')
     {{-- Navbar --}}
-    <nav class="bg-white border-gray-200 px-2 sm:px-20 py-2.5 rounded dark:bg-gray-900 w-full shadow-md z-20	">
+    <nav class="bg-white border-gray-200 px-4 sm:px-20 py-2.5 rounded dark:bg-gray-900 w-full shadow-md z-20 fixed">
         <div class="container flex flex-wrap items-left justify-between mx-auto">
-            <div class=" flex flex-wrap   ">
-                <a href="/" class="flex items-center pb-3">
-                    <img src="{{ asset('assets/images/Logo.png') }}" class="h-9" alt="Flowbite Logo" />
-                </a>
-                <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
-                    <ul
-                        class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                        <li>
-                            <a href="#"
-                                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                                aria-current="page">| IPA - Sistem Reproduksi Manusia</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
 
-            <div class="flex items-center space-x-10 " onclick="">
-                <ul>
+            <img class="w-[100px] cursor-pointer" src="{{ asset('assets/images/Logo.png') }}" alt="" />
+
+
+            <div class="flex items-center space-x-5 " onclick="">
+                <ul class="flex gap-2 items-center">
                     <li>
-                        <p class="text-sm">{{ Auth::user()->name }}</p>
+                        <p class="text-md md:text-lg">{{ Auth::user()->name }}</p>
                     </li>
                     <li>
-                        <p class="text-sm">{{ Auth::user()->service_kelas_user->name }}</p>
+                        <p class="text-lg">|</p>
+                    </li>
+                    <li>
+                        <p class="text-md md:text-lg font-semibold">{{ Auth::user()->service_kelas_user->name }}</p>
                     </li>
                 </ul>
                 <div class="bg-red-500 rounded-md px-5 text-white items-center flex cursor-pointer ">
@@ -62,16 +46,14 @@
         </div>
     </nav>
 
-    <div class="max-h-screen max-w-full">
+    <div class="max-h-screen max-w-full pt-[50px]">
         <div class="flex flex-col h-[30vh] pt-20 items-start  md:h-[120vh] md:mx-20 mx-5">
             <div class="flex flex-col items-start ">
-                <h1 class=" text-2xl  md:text-3xl font-bold text-blue-500 ">Selamat datang {{ Auth::user()->name }}</h1>
-                <p class=" text-xl md:text-xl text-blue-500 font-semibold 	py-1">
-                    {{ Auth::user()->service_kelas_user->name }}</p>
-                <p class="md:text-sm ">Semoga aktivitas belajarmu menyenangkan.</p>
+                <h1 class=" text-2xl pb-1 md:text-3xl font-bold text-blue-500 ">Selamat datang {{ Auth::user()->name }}</h1>
+                <p class="text-lg pb-2">Semoga aktivitas belajarmu menyenangkan.</p>
             </div>
 
-            <div class="flex flex-col items-start pt-5 w-full">
+            <div class="flex flex-col items-start pt-2 w-full">
                 <h1 class=" text-xl md:text-3xl font-bold pb-2">{{ Auth::user()->service_kelas_user->name }} - Reaksi Redoks
                 </h1>
                 <div class="md:bg-gray-700 rounded p-5 bg-gray-700 flex w-full">
@@ -93,26 +75,40 @@
                 </div>
             </div>
 
-            <div class="h-[100vh] max-w-full flex flex-column justify-center items-center my-20 w-full">
-                <div class="grid grid-cols-4 gap-4 w-full ">
-                    @foreach ($test = [1, 2, 3, 4, 5, 6, 7, 8] as $item)
-                        <div class=" py-5 sm:py-10 bg-white border-1  drop-shadow-xl rounded flex flex-col items-center">
-                            <a href="{{ route('frontend.siswa.detail') }}" class="flex items-center w-20 md:w-40 ">
-                                <img src="{{ asset('assets/images/teacher.png') }}" class="" alt="Flowbite Logo" />
-                            </a>
-                            <p class="text-center text-gray-500">Kimia</p>
-                        </div>
-                    @endforeach
-
+            <div class="my-20 w-full">
+                <div class="container mx-auto grid md:grid-cols-3 gap-8">
+                    <div
+                        class="w-full shadow-lg hover:scale-105 duration-300 flex flex-col items-center bg-white p-4 my-4 rounded-lg py-4">
+                        <img class="mx-auto" src="{{ asset('assets/images/translate.png') }}" alt="" />
+                        <p class="text-lg text-center font-medium max-w-[300px]">
+                            Kimia
+                        </p>
+                    </div>
+                    <div
+                        class="w-full shadow-lg hover:scale-105 duration-300 flex flex-col items-center bg-white p-4 my-4 rounded-lg py-4">
+                        <img class="mx-auto" src="{{ asset('assets/images/draw.png') }}" alt="" />
+                        <p class="text-lg text-center font-medium max-w-[300px]">
+                            Fisika
+                        </p>
+                    </div>
+                    <div
+                        class="w-full shadow-lg hover:scale-105 duration-300 flex flex-col items-center bg-white p-4 my-4 rounded-lg py-4">
+                        <img class="mx-auto" src="{{ asset('assets/images/math.png') }}" alt="" />
+                        <p class="text-lg text-center font-medium max-w-[300px]">
+                            Matematika
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 
     {{-- {Footer} --}}
-    <div class="flex flex-col mt-96 md:mx-20 my-20 mx-5 pt-96 md:pt-20">
-        <span class="h-0.5 w-full bg-gray-400 lg:w-full"></span>
-        <p class=" text-sm md:text-lg my-5">© Klassin 2022 - all right reserved</p>
-    </div>
+        <section class="bg-primary py-12 px-4">
+        <div class="container mx-auto">
+            <p class="text-white text-center">
+                Copyright &copy; Klassin Shop 2022. All rights reserved
+            </p>
+        </div>
+    </section>
 @endsection
